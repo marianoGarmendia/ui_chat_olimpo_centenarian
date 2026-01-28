@@ -14,6 +14,7 @@ import {
 } from "@/lib/ensure-tool-responses";
 import { LangGraphLogoSVG } from "../icons/langgraph";
 import { TooltipIconButton } from "./tooltip-icon-button";
+import Image from "next/image";
 import {
   ArrowDown,
   LoaderCircle,
@@ -138,6 +139,9 @@ export function Thread() {
   const [firstTokenReceived, setFirstTokenReceived] = useState(false);
   const isLargeScreen = useMediaQuery("(min-width: 1024px)");
 
+
+
+
   const stream = useStreamContext();
   const messages = stream.messages;
   const isLoading = stream.isLoading;
@@ -151,6 +155,81 @@ export function Thread() {
     closeArtifact();
     setArtifactContext({});
   };
+
+//   useEffect(() => {
+//     if (firstMessageRef.current !== 0) return;
+
+//     // Aca debo acceder al localStorage y traerme todas als peguntas
+// console.log("enviando first message")
+// console.log("firstMessageRef", firstMessageRef.current)
+//     const newHumanMessage: Message = {
+//       id: `do-not-render-${uuidv4()}`,
+//       // id: uuidv4(),
+//       type: "human",
+//       content: "Hola!",
+//     };
+// console.log("stream.messages 1", stream.values.messages)
+// // TODO: Enviar en la config el perfil de usuario y el plan de suplementos
+//     const toolMessages = ensureToolCallsHaveResponses(stream.messages);
+//     stream.submit(
+//       { messages: [...toolMessages, newHumanMessage] },
+//       {
+//         config: { configurable: {  suplements_raw: "suplementos de ejemplo, creatina, whey, proteinas, etc."} },
+//         streamMode: ["values"],
+//         optimisticValues: (prev) => ({
+//           ...prev,
+//           messages: [
+//             ...(prev.messages ?? []),
+//             ...toolMessages,
+//             newHumanMessage,
+//           ],
+//         }),
+//       },
+//     );
+//     firstMessageRef.current = 1;
+//     setInput("");
+//     // setShowinputField(true);
+
+//     // no cleanup needed
+//   }, [firstMessageRef, stream]);
+
+  // useEffect(() => {
+  //   console.log("stream", stream);
+  //   if(firstMessage.current == 1){
+  //     return
+  //   }
+  //   const newHumanMessage: Message = {
+  //     id: uuidv4(),
+  //     type: "human",
+  //     content:"Hola"
+  //   };
+
+  //   const toolMessages = ensureToolCallsHaveResponses(stream.messages);
+
+  //   stream.submit(
+  //     { messages: [...toolMessages, newHumanMessage] },
+  //     {
+  //       config:{configurable:{user_id:"123"}},
+  //       streamMode: ["values"],
+  //       streamSubgraphs: true,
+  //       streamResumable: true,
+  //       optimisticValues: (prev) => ({
+  //         ...prev,
+        
+  //         messages: [
+  //           ...(prev.messages ?? []),
+  //           ...toolMessages,
+  //           newHumanMessage,
+  //         ],
+  //       }),
+  //     },
+  //   );
+  // }, [stream]);
+
+  useEffect(() => {
+    console.log("messages")
+    console.log(messages)
+  }, [messages]);
 
   useEffect(() => {
     if (!stream.error) {
@@ -215,8 +294,10 @@ export function Thread() {
       Object.keys(artifactContext).length > 0 ? artifactContext : undefined;
 
     stream.submit(
-      { messages: [...toolMessages, newHumanMessage], context },
+      { messages: [...toolMessages, newHumanMessage] },
+  
       {
+        config: { configurable: { user_id: "123" , suplements_raw: "suplementos del usuario" , prescription: "prescitpcion apra el usuario" , analisis_nutricional: "analisis nutricional del usuario" , informacion_nutricional: "informacion nutricional del usuario" } },
         streamMode: ["values"],
         streamSubgraphs: true,
         streamResumable: true,
@@ -308,7 +389,7 @@ export function Thread() {
               : { duration: 0 }
           }
         >
-          {!chatStarted && (
+          {/* {!chatStarted && (
             <div className="absolute top-0 left-0 z-10 flex w-full items-center justify-between gap-3 p-2 pl-4">
               <div>
                 {(!chatHistoryOpen || !isLargeScreen) && (
@@ -329,8 +410,37 @@ export function Thread() {
                 <OpenGitHubRepo />
               </div>
             </div>
+          )} */}
+            {chatStarted && (
+            <div className="relative z-10 flex items-center justify-between gap-3 p-2">
+              {/* <div className="flex items-center gap-2">
+                <Image
+                  src="/avatar_olimpo.png"
+                  alt="Logo"
+                  width={32}
+                  height={32}
+                />
+                <span className="text-lg font-semibold tracking-tight">Olimpo W.S.</span>
+              </div> */}
+              {/* <div className="flex items-center gap-2">
+                <Button
+                  variant="ghost"
+                  className="hover:bg-gray-100"
+                  onClick={() => setChatHistoryOpen((p) => !p)}
+                >
+                  {chatHistoryOpen ? "Cerrar historial" : "Ver historial"}
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="hover:bg-gray-100"
+                  onClick={() => setThreadId(null)}
+                >
+                  Nuevo hilo
+                </Button>
+              </div> */}
+            </div>
           )}
-          {chatStarted && (
+          {/* {chatStarted && (
             <div className="relative z-10 flex items-center justify-between gap-3 p-2">
               <div className="relative flex items-center justify-start gap-2">
                 <div className="absolute left-0 z-10">
@@ -386,8 +496,8 @@ export function Thread() {
               </div>
 
               <div className="from-background to-background/0 absolute inset-x-0 top-full h-5 bg-gradient-to-b" />
-            </div>
-          )}
+            </div> */}
+          {/* // )} */}
 
           <StickToBottom className="relative flex-1 overflow-hidden">
             <StickyToBottomContent
@@ -434,14 +544,14 @@ export function Thread() {
               }
               footer={
                 <div className="sticky bottom-0 flex flex-col items-center gap-8 bg-white">
-                  {!chatStarted && (
+                  {/* {!chatStarted && (
                     <div className="flex items-center gap-3">
                       <LangGraphLogoSVG className="h-8 flex-shrink-0" />
                       <h1 className="text-2xl font-semibold tracking-tight">
                         Agent Chat
                       </h1>
                     </div>
-                  )}
+                  )} */}
 
                   <ScrollToBottom className="animate-in fade-in-0 zoom-in-95 absolute bottom-full left-1/2 mb-4 -translate-x-1/2" />
 
@@ -479,13 +589,13 @@ export function Thread() {
                             form?.requestSubmit();
                           }
                         }}
-                        placeholder="Type your message..."
+                        placeholder="Preguntame algo..."
                         className="field-sizing-content resize-none border-none bg-transparent p-3.5 pb-0 shadow-none ring-0 outline-none focus:ring-0 focus:outline-none"
                       />
 
                       <div className="flex items-center gap-6 p-2 pt-4">
                         <div>
-                          <div className="flex items-center space-x-2">
+                          {/* <div className="flex items-center space-x-2">
                             <Switch
                               id="render-tool-calls"
                               checked={hideToolCalls ?? false}
@@ -497,9 +607,9 @@ export function Thread() {
                             >
                               Hide Tool Calls
                             </Label>
-                          </div>
+                          </div> */}
                         </div>
-                        <Label
+                        {/* <Label
                           htmlFor="file-input"
                           className="flex cursor-pointer items-center gap-2"
                         >
@@ -507,7 +617,7 @@ export function Thread() {
                           <span className="text-sm text-gray-600">
                             Upload PDF or Image
                           </span>
-                        </Label>
+                        </Label> */}
                         <input
                           id="file-input"
                           type="file"

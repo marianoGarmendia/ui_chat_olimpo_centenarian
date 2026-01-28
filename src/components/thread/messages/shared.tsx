@@ -29,40 +29,40 @@ function ContentCopyable({
     setTimeout(() => setCopied(false), 2000);
   };
 
-  return (
-    <TooltipIconButton
-      onClick={(e) => handleCopy(e)}
-      variant="ghost"
-      tooltip="Copy content"
-      disabled={disabled}
-    >
-      <AnimatePresence
-        mode="wait"
-        initial={false}
-      >
-        {copied ? (
-          <motion.div
-            key="check"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.15 }}
-          >
-            <CopyCheck className="text-green-500" />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="copy"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.15 }}
-          >
-            <Copy />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </TooltipIconButton>
+  return (<></>
+    // <TooltipIconButton
+    //   onClick={(e) => handleCopy(e)}
+    //   variant="ghost"
+    //   tooltip="Copy content"
+    //   disabled={disabled}
+    // >
+    //   <AnimatePresence
+    //     mode="wait"
+    //     initial={false}
+    //   >
+    //     {copied ? (
+    //       <motion.div
+    //         key="check"
+    //         initial={{ opacity: 0, scale: 0.8 }}
+    //         animate={{ opacity: 1, scale: 1 }}
+    //         exit={{ opacity: 0, scale: 0.8 }}
+    //         transition={{ duration: 0.15 }}
+    //       >
+    //         <CopyCheck className="text-green-500" />
+    //       </motion.div>
+    //     ) : (
+    //       <motion.div
+    //         key="copy"
+    //         initial={{ opacity: 0, scale: 0.8 }}
+    //         animate={{ opacity: 1, scale: 1 }}
+    //         exit={{ opacity: 0, scale: 0.8 }}
+    //         transition={{ duration: 0.15 }}
+    //       >
+    //         <Copy />
+    //       </motion.div>
+    //     )}
+    //   </AnimatePresence>
+    // </TooltipIconButton>
   );
 }
 
@@ -195,16 +195,17 @@ export function CommandBar({
         disabled={isLoading}
       />
       {isAiMessage && !!handleRegenerate && (
-        <TooltipIconButton
-          disabled={isLoading}
-          tooltip="Refresh"
-          variant="ghost"
-          onClick={handleRegenerate}
-        >
-          <RefreshCcw />
-        </TooltipIconButton>
+        <></>
+        // <TooltipIconButton
+        //   disabled={isLoading}
+        //   tooltip="Refresh"
+        //   variant="ghost"
+        //   onClick={handleRegenerate}
+        // >
+        //   <RefreshCcw />
+        // </TooltipIconButton>
       )}
-      {showEdit && (
+      {/* {showEdit && (
         <TooltipIconButton
           disabled={isLoading}
           tooltip="Edit"
@@ -215,7 +216,7 @@ export function CommandBar({
         >
           <Pencil />
         </TooltipIconButton>
-      )}
+      )} */}
     </div>
   );
 }

@@ -103,6 +103,7 @@ const StreamSession = ({
 
   useEffect(() => {
     checkGraphStatus(apiUrl, apiKey).then((ok) => {
+      console.log("apiUrl", apiUrl);
       if (!ok) {
         toast.error("Failed to connect to LangGraph server", {
           description: () => (
@@ -266,8 +267,8 @@ export const StreamProvider: React.FC<{ children: ReactNode }> = ({
   return (
     <StreamSession
       apiKey={apiKey}
-      apiUrl={apiUrl}
-      assistantId={assistantId}
+      apiUrl={finalApiUrl}
+      assistantId={finalAssistantId}
     >
       {children}
     </StreamSession>

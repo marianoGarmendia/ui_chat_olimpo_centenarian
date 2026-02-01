@@ -440,6 +440,7 @@ export function Thread() {
               </div> */}
             </div>
           )}
+          {chatStarted && <div className="px-4 font-semibold tracking-tight">Kombat AI</div>}
           {/* {chatStarted && (
             <div className="relative z-10 flex items-center justify-between gap-3 p-2">
               <div className="relative flex items-center justify-start gap-2">
@@ -544,14 +545,14 @@ export function Thread() {
               }
               footer={
                 <div className="sticky bottom-0 flex flex-col items-center gap-8 bg-white">
-                  {/* {!chatStarted && (
+                  {!chatStarted && (
                     <div className="flex items-center gap-3">
-                      <LangGraphLogoSVG className="h-8 flex-shrink-0" />
+                      {/* <LangGraphLogoSVG className="h-8 flex-shrink-0" /> */}
                       <h1 className="text-2xl font-semibold tracking-tight">
-                        Agent Chat
+                       KOMBA AI
                       </h1>
                     </div>
-                  )} */}
+                  )}
 
                   <ScrollToBottom className="animate-in fade-in-0 zoom-in-95 absolute bottom-full left-1/2 mb-4 -translate-x-1/2" />
 

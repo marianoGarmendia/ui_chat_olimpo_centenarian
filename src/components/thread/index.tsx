@@ -159,7 +159,7 @@ export function Thread() {
 //   useEffect(() => {
 //     if (firstMessageRef.current !== 0) return;
 
-//     // Aca debo acceder al localStorage y traerme todas als peguntas
+//     // Aquí debo acceder al localStorage y traerme todas las preguntas
 // console.log("enviando first message")
 // console.log("firstMessageRef", firstMessageRef.current)
 //     const newHumanMessage: Message = {
@@ -297,7 +297,15 @@ export function Thread() {
       { messages: [...toolMessages, newHumanMessage] },
   
       {
-        config: { configurable: { user_id: "123" , suplements_raw: "suplementos del usuario" , prescription: "prescitpcion apra el usuario" , analisis_nutricional: "analisis nutricional del usuario" , informacion_nutricional: "informacion nutricional del usuario" } },
+        config: {
+          configurable: {
+            user_id: "123",
+            suplements_raw: "suplementos del usuario",
+            prescription: "prescipcion para el usuario",
+            analysis_nutricional: "nutritional analysis of the user",
+            information: "user information",
+          },
+        },
         streamMode: ["values"],
         streamSubgraphs: true,
         streamResumable: true,
@@ -428,7 +436,7 @@ export function Thread() {
                   className="hover:bg-gray-100"
                   onClick={() => setChatHistoryOpen((p) => !p)}
                 >
-                  {chatHistoryOpen ? "Cerrar historial" : "Ver historial"}
+                  {chatHistoryOpen ? "Cerrar histórico" : "Ver histórico"}
                 </Button>
                 <Button
                   variant="ghost"

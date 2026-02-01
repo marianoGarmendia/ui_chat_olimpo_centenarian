@@ -123,7 +123,7 @@ export function Thread() {
   );
   const [hideToolCalls, setHideToolCalls] = useQueryState(
     "hideToolCalls",
-    parseAsBoolean.withDefault(false),
+    parseAsBoolean.withDefault(true),
   );
   const [input, setInput] = useState("");
   const {
@@ -289,6 +289,7 @@ export function Thread() {
 
     const context =
       Object.keys(artifactContext).length > 0 ? artifactContext : undefined;
+      
 
     stream.submit(
       { messages: [...toolMessages, newHumanMessage] },
@@ -297,10 +298,9 @@ export function Thread() {
         config: {
           configurable: {
             user_id: "123",
-            suplements_raw: "suplementos del usuario",
-            prescription: "prescipcion para el usuario",
-            analysis_nutricional: "nutritional analysis of the user",
-            information: "user information",
+            org_id: "kombatpadel",
+            agent_id: "agent_wsp",
+            title: "como_elegir_palas_kombat",
           },
         },
         streamMode: ["values"],
@@ -603,7 +603,7 @@ export function Thread() {
 
                       <div className="flex items-center gap-6 p-2 pt-4">
                         <div>
-                          {/* <div className="flex items-center space-x-2">
+                          <div className="flex items-center space-x-2">
                             <Switch
                               id="render-tool-calls"
                               checked={hideToolCalls ?? false}
@@ -615,7 +615,7 @@ export function Thread() {
                             >
                               Hide Tool Calls
                             </Label>
-                          </div> */}
+                          </div>
                         </div>
                         {/* <Label
                           htmlFor="file-input"

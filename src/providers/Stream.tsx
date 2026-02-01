@@ -139,8 +139,6 @@ export const StreamProvider: React.FC<{ children: ReactNode }> = ({
   const envAssistantId: string | undefined =
     process.env.NEXT_PUBLIC_ASSISTANT_ID;
 
-
-
   // Use URL params with env var fallbacks
   const [apiUrl, setApiUrl] = useQueryState("apiUrl", {
     defaultValue: envApiUrl || "",

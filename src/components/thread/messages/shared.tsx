@@ -29,7 +29,8 @@ function ContentCopyable({
     setTimeout(() => setCopied(false), 2000);
   };
 
-  return (<></>
+  return (
+    <></>
     // <TooltipIconButton
     //   onClick={(e) => handleCopy(e)}
     //   variant="ghost"

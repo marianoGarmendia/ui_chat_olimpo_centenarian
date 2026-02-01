@@ -139,9 +139,6 @@ export function Thread() {
   const [firstTokenReceived, setFirstTokenReceived] = useState(false);
   const isLargeScreen = useMediaQuery("(min-width: 1024px)");
 
-
-
-
   const stream = useStreamContext();
   const messages = stream.messages;
   const isLoading = stream.isLoading;
@@ -156,42 +153,42 @@ export function Thread() {
     setArtifactContext({});
   };
 
-//   useEffect(() => {
-//     if (firstMessageRef.current !== 0) return;
+  //   useEffect(() => {
+  //     if (firstMessageRef.current !== 0) return;
 
-//     // Aquí debo acceder al localStorage y traerme todas las preguntas
-// console.log("enviando first message")
-// console.log("firstMessageRef", firstMessageRef.current)
-//     const newHumanMessage: Message = {
-//       id: `do-not-render-${uuidv4()}`,
-//       // id: uuidv4(),
-//       type: "human",
-//       content: "Hola!",
-//     };
-// console.log("stream.messages 1", stream.values.messages)
-// // TODO: Enviar en la config el perfil de usuario y el plan de suplementos
-//     const toolMessages = ensureToolCallsHaveResponses(stream.messages);
-//     stream.submit(
-//       { messages: [...toolMessages, newHumanMessage] },
-//       {
-//         config: { configurable: {  suplements_raw: "suplementos de ejemplo, creatina, whey, proteinas, etc."} },
-//         streamMode: ["values"],
-//         optimisticValues: (prev) => ({
-//           ...prev,
-//           messages: [
-//             ...(prev.messages ?? []),
-//             ...toolMessages,
-//             newHumanMessage,
-//           ],
-//         }),
-//       },
-//     );
-//     firstMessageRef.current = 1;
-//     setInput("");
-//     // setShowinputField(true);
+  //     // Aquí debo acceder al localStorage y traerme todas las preguntas
+  // console.log("enviando first message")
+  // console.log("firstMessageRef", firstMessageRef.current)
+  //     const newHumanMessage: Message = {
+  //       id: `do-not-render-${uuidv4()}`,
+  //       // id: uuidv4(),
+  //       type: "human",
+  //       content: "Hola!",
+  //     };
+  // console.log("stream.messages 1", stream.values.messages)
+  // // TODO: Enviar en la config el perfil de usuario y el plan de suplementos
+  //     const toolMessages = ensureToolCallsHaveResponses(stream.messages);
+  //     stream.submit(
+  //       { messages: [...toolMessages, newHumanMessage] },
+  //       {
+  //         config: { configurable: {  suplements_raw: "suplementos de ejemplo, creatina, whey, proteinas, etc."} },
+  //         streamMode: ["values"],
+  //         optimisticValues: (prev) => ({
+  //           ...prev,
+  //           messages: [
+  //             ...(prev.messages ?? []),
+  //             ...toolMessages,
+  //             newHumanMessage,
+  //           ],
+  //         }),
+  //       },
+  //     );
+  //     firstMessageRef.current = 1;
+  //     setInput("");
+  //     // setShowinputField(true);
 
-//     // no cleanup needed
-//   }, [firstMessageRef, stream]);
+  //     // no cleanup needed
+  //   }, [firstMessageRef, stream]);
 
   // useEffect(() => {
   //   console.log("stream", stream);
@@ -215,7 +212,7 @@ export function Thread() {
   //       streamResumable: true,
   //       optimisticValues: (prev) => ({
   //         ...prev,
-        
+
   //         messages: [
   //           ...(prev.messages ?? []),
   //           ...toolMessages,
@@ -227,8 +224,8 @@ export function Thread() {
   // }, [stream]);
 
   useEffect(() => {
-    console.log("messages")
-    console.log(messages)
+    console.log("messages");
+    console.log(messages);
   }, [messages]);
 
   useEffect(() => {
@@ -295,7 +292,7 @@ export function Thread() {
 
     stream.submit(
       { messages: [...toolMessages, newHumanMessage] },
-  
+
       {
         config: {
           configurable: {
@@ -419,7 +416,7 @@ export function Thread() {
               </div>
             </div>
           )} */}
-            {chatStarted && (
+          {chatStarted && (
             <div className="relative z-10 flex items-center justify-between gap-3 p-2">
               {/* <div className="flex items-center gap-2">
                 <Image
@@ -448,7 +445,9 @@ export function Thread() {
               </div> */}
             </div>
           )}
-          {chatStarted && <div className="px-4 font-semibold tracking-tight">Kombat AI</div>}
+          {chatStarted && (
+            <div className="px-4 font-semibold tracking-tight">Kombat AI</div>
+          )}
           {/* {chatStarted && (
             <div className="relative z-10 flex items-center justify-between gap-3 p-2">
               <div className="relative flex items-center justify-start gap-2">
@@ -557,7 +556,7 @@ export function Thread() {
                     <div className="flex items-center gap-3">
                       {/* <LangGraphLogoSVG className="h-8 flex-shrink-0" /> */}
                       <h1 className="text-2xl font-semibold tracking-tight">
-                       KOMBA AI
+                        KOMBA AI
                       </h1>
                     </div>
                   )}
